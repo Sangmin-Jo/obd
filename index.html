@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>obd Time</title>
+</head>
+<link rel="stylesheet" href="https://use.typekit.net/jfk4ltr.css">
+
+
+<style type="text/css">
+	@font-face {
+		font-family: 'Pretendard-Regular';
+		src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+		font-style: normal;
+	}	    
+
+	html::-webkit-scrollbar {
+		display: none;
+	}
+
+	html {
+		font-family: "neue-haas-grotesk-display", sans-serif;
+		font-weight: 500;
+		font-style: normal;
+	}
+
+	body {
+		background: black;
+		margin: 0; /* Remove default margin */
+	}
+
+	.container {
+		position: absolute;
+		top: 50%; left: 50%;
+		transform: translate(-50%, -50%);
+		overflow: hidden;
+	}
+
+	.white {
+		background: white;
+		border: 2px solid white;
+	}
+
+	.niddleBox {
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+
+	.niddle {
+		width: 8px;
+		height: 800px;
+		background: black;
+		bottom: 50%; left: 50%;
+		position: absolute;
+		transform-origin: bottom;
+	}
+
+	#day, #time-S {
+		width: 1280px;
+		height: 720px;
+	}
+
+	#month, #time-M {
+		width: 820px;
+		height: 528px;
+	}
+
+	#year4, #time-H {
+		width: 360px;
+		height: 360px;
+	}
+
+	#year3 {
+		width: 296px;
+		height: 296px;
+	}
+
+	#year2 {
+		width: 232px;
+		height: 232px;
+	}
+
+	#year1 {
+		width: 168px;
+		height: 168px;
+	}
+
+	p {
+		color: white;
+		font-size: 20px;
+		text-align: left;
+		margin: 0;
+		padding: 0;
+	}
+
+	#dateTimeNum, #purchaseNum {
+		font-size: 40px;
+	}
+</style>
+
+<body>
+	<img src="./Logo.svg" height="80px" style="position: fixed; top: 40px; left: 40px;">
+	<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+		<div style="width: 640px;">
+			<p>Current time</p>
+			<p id="dateTimeNum"></p>
+		</div>
+		<div style="width: 640px;">
+			<p>Purchase number</p>
+			<p id="purchaseNum"></p>
+		</div>
+	</div>
+	<div id="obdClock" style="z-index: 999;">
+		<div class="container white" id="day">
+			<div class="niddleBox">
+				<div id="day-Niddle" class="niddle"></div>			
+			</div>
+		</div>
+		<div class="container white" id="month">
+			<div class="niddleBox">
+				<div id="month-Niddle" class="niddle"></div>			
+			</div>
+		</div>
+		<div class="container white" id="year4">
+			<div class="niddleBox">
+				<div id="year4-Niddle" class="niddle"></div>			
+			</div>
+		</div>
+		<div class="container white" id="year3">
+			<div class="niddleBox">
+				<div id="year3-Niddle" class="niddle"></div>			
+			</div>
+		</div>
+		<div class="container white" id="year2">
+			<div class="niddleBox">
+				<div id="year2-Niddle" class="niddle"></div>			
+			</div>
+		</div>
+		<div class="container white" id="year1">
+			<div class="niddleBox">
+				<div id="year1-Niddle" class="niddle"></div>			
+			</div>
+		</div>
+		<div class="container white" style="width: 104px; height: 104px;"></div>
+		
+		<div class="container" id="time-S">
+			<div class="niddleBox">
+				<div id="time-Niddle-S" class="niddle"></div>
+			</div>
+		</div>
+		<div class="container" id="time-M">
+			<div class="niddleBox">
+				<div id="time-Niddle-M" class="niddle"></div>
+			</div>
+		</div>
+		<div class="container" id="time-H">
+			<div class="niddleBox">
+				<div id="time-Niddle-H" class="niddle"></div>
+			</div>
+		</div>
+	</div>
+	<div style="width: 100%; display: flex; justify-content: center; position: fixed; bottom: 40px; font-family: 'pretendard', sans-serif; font-weight: 300;">
+			<p style="width: 1280px; line-height: 1.5em;">
+				obd는 오래 지속되는 소비와 라이프스타일을 지향합니다. obd Symbol로부터 확장되어 현재 <br>시각을 표시하는 시계 그래픽은 obd가 지향하는 가치, ‘시간’을 시각화하여 전달합니다.<br>
+				고객이 상품을 구매하는 시각을 그래픽으로 변환하여 고유한 코드(구매번호)로서 부여하여,<br>
+				구매한 시점을 시작으로 이루어지는 고객의 경험에 브랜드의 가치를 입힙니다.
+			</p>
+		</div>
+	</body>
+
+
+<script type="text/javascript">
+setInterval(updateDisplay , 1000);
+
+function rotateNeedle(elementId, degrees) {
+    document.getElementById(elementId).style.transform = `rotate(${degrees}deg)`;
+}
+
+function updateDisplay() {
+    const now = new Date();
+
+    const y = now.getFullYear().toString();
+    const y1 = y.charAt(0);
+    const y2 = y.charAt(1);
+    const y3 = y.charAt(2);
+    const y4 = y.charAt(3);
+    const mth = now.getMonth();
+    const d = now.getDate();
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const s = now.getSeconds();
+
+    rotateNeedle("time-Niddle-S", s * 6); // 6 degrees per second
+    rotateNeedle("time-Niddle-M", (m * 6) + (s / 10)); // 6 degrees per minute, 1/10th of a degree for each second
+    rotateNeedle("time-Niddle-H", (h * 30) + (m / 2)); // 30 degrees per hour, 1/2 degree for each minute
+    rotateNeedle("day-Niddle", (d * 11.6129032) + (h / 2)); // Adjusting for an average month length
+    rotateNeedle("month-Niddle", (mth * 30) + (d / 2)); // 30 degrees per month, 1/2 degree for each day
+    rotateNeedle("year4-Niddle", (y4 * 36) + (mth / 30)); // 36 degrees per decade, 3
+    rotateNeedle("year3-Niddle", (y3 * 36) + (y4 * 3.6)); // 36 degrees per decade, 3.6
+    rotateNeedle("year2-Niddle", (y2 * 36) + (y3 * 3.6)); // 36 degrees per decade
+    rotateNeedle("year1-Niddle", (y1 * 36) + (y2 * 3.6)); // 36 degrees per decade
+
+    // Repeat the pattern for other year needles
+
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const mixedA = alphabet[Math.floor(Math.random()*alphabet.length)]
+    const mixedB = alphabet[Math.floor(Math.random()*alphabet.length)]
+
+    const purchaseNum = document.getElementById('purchaseNum');
+	purchaseNum.innerHTML = y1 + y2 +  y3 + y4 + (mth + 1) + d + String(h).padStart(2, "0") + String(m).padStart(2, "0") + String(s).padStart(2, "0") + mixedA + mixedB
+	// dateTimeNum.innerHTML = y1 + ":" + y2 + ":" + y3 + ":" + y4 + ":" + (mth + 1) + ":" + d + ":" + h + ":" + m + ":" + s
+    const dateTimeNum = document.getElementById('dateTimeNum');
+	dateTimeNum.innerHTML = y1 + y2 + y3 + y4 + " / " + (mth + 1) + " / " + d + " / " + h + " : " + m + " : " + s
+}
+
+</script>
+</body>
+</html>
