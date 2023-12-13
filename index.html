@@ -49,8 +49,8 @@
 	}
 
 	.niddle {
-		width: 0.4vw;
-		height: 40vw;
+		width: 0.2vw;
+		height: 20vw;
 		background: black;
 		bottom: 50%; left: 50%;
 		position: absolute;
@@ -58,61 +58,61 @@
 	}
 
 	#day, #time-S {
-		width: 64vw;
-		height: 36vw;
-	}
-
-	#month, #time-M {
-		width: 41vw;
-		height: 26.4vw;
-	}
-
-	#year4, #time-H {
-		width: 18vw;
+		width: 32vw;
 		height: 18vw;
 	}
 
+	#month, #time-M {
+		width: 20.5vw;
+		height: 16.6vw;
+	}
+
+	#year4, #time-H {
+		width: 9vw;
+		height: 9vw;
+	}
+
 	#year3 {
-		width: 14.8vw;
-		height: 14.8vw;
+		width: 7.4vw;
+		height: 7.4vw;
 	}
 
 	#year2 {
-		width: 11.6vw;
-		height: 11.6vw;
+		width: 10.8vw;
+		height: 10.8vw;
 	}
 
 	#year1 {
-		width: 8.4vw;
-		height: 8.4vw;
+		width: 4.2vw;
+		height: 4.2vw;
 	}
 
 	p {
 		color: white;
-		font-size: 1vw;
+		font-size: 0.5vw;
 		text-align: left;
 		margin: 0;
 		padding: 0;
 	}
 
 	#dateTimeNum, #purchaseNum {
-		font-size: 2vw;
+		font-size: 1.4vw;
 	}
 </style>
 
 <body>
-	<img src="./Logo.svg" style="height: 3.6vw; position: fixed; top: 2vw; left: 2vw;">
-	<div style="width: 100%; display: flex; justify-content: center; margin-top: 2vw;">
-		<div style="width: 32vw;">
+	<img src="./Logo.svg" style="height: 2vw; position: fixed; top: 1vw; right: 1vw;">
+	<div style="width: 100%; display: flex; justify-content: center; margin-top: 1vw;">
+		<div style="width: 16vw;">
 			<p>Current time</p>
 			<p id="dateTimeNum"></p>
 		</div>
-		<div style="width: 32vw;">
+		<div style="width: 16vw;">
 			<p>Purchase number</p>
 			<p id="purchaseNum"></p>
 		</div>
 	</div>
-	<div id="obdClock" style="z-index: 999;">
+	<div id="obdClock" style="z-index: 999; position: fixed; top: 13.4vw; left: 50vw;">
 		<div class="container white" id="day">
 			<div class="niddleBox">
 				<div id="day-Niddle" class="niddle"></div>			
@@ -143,7 +143,7 @@
 				<div id="year1-Niddle" class="niddle"></div>			
 			</div>
 		</div>
-		<div class="container white" style="width: 5.2vw; height: 5.2vw;"></div>
+		<div class="container white" style="width: 2.6vw; height: 2.6vw;"></div>
 		
 		<div class="container" id="time-S">
 			<div class="niddleBox">
@@ -161,14 +161,12 @@
 			</div>
 		</div>
 	</div>
-	<div style="width: 100%; display: flex; justify-content: center; position: fixed; bottom: 2vw; font-family: 'pretendard', sans-serif; font-weight: 300;">
-			<p style="width: 64vw; line-height: 1.5em;">
-				obd는 오래 지속되는 소비와 라이프스타일을 지향합니다. obd Symbol로부터 확장되어 현재 <br>시각을 표시하는 시계 그래픽은 obd가 지향하는 가치, ‘시간’을 시각화하여 전달합니다.<br>
-				고객이 상품을 구매하는 시각을 그래픽으로 변환하여 고유한 코드(구매번호)로서 부여하여,<br>
-				구매한 시점을 시작으로 이루어지는 고객의 경험에 브랜드의 가치를 입힙니다.
-			</p>
-		</div>
-	</body>
+	<p style="width: 32vw; line-height: 1.5em; font-size: 0.8vw; width: 100%; position: fixed; left: 1vw; position: fixed; top: 1vw; font-family: 'pretendard', sans-serif; font-weight: 300;">
+		obd는 오래 지속되는 소비와 라이프스타일을 지향합니다. obd Symbol로부터 확장되어 현재 <br>시각을 표시하는 시계 그래픽은 obd가 지향하는 가치, ‘시간’을 시각화하여 전달합니다.<br>
+		고객이 상품을 구매하는 시각을 그래픽으로 변환하여 고유한 코드(구매번호)로서 부여하여,<br>
+		구매한 시점을 시작으로 이루어지는 고객의 경험에 브랜드의 가치를 입힙니다.
+	</p>
+</body>
 
 
 <script type="text/javascript">
